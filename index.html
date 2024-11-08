@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>梁定成的生日倒计时</title>
+    <title>梁定成的生日派对邀请</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -58,6 +58,37 @@
             margin-top: 20px;
         }
 
+        .invitation {
+            margin-top: 20px;
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+
+        .rsvp {
+            margin-top: 20px;
+        }
+
+        .rsvp input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .rsvp button {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .rsvp button:hover {
+            background-color: #c0392b;
+        }
+
         @media (max-width: 600px) {
             .countdown {
                 font-size: 1.5em;
@@ -79,23 +110,39 @@
 </head>
 <body>
     <div class="container">
-        <h1>亲爱的梁定成，距离您的生日还有：</h1>
+        <h1>亲爱的朋友们，欢迎参加我的生日派对！</h1>
         <div id="countdown" class="countdown">
             <div><span id="days"></span>天</div>
             <div><span id="hours"></span>小时</div>
             <div><span id="minutes"></span>分钟</div>
             <div><span id="seconds"></span>秒</div>
         </div>
-        <p>让我们一起期待这个特别的日子！</p>
+        <p>让我们一起庆祝这个特别的日子！</p>
+
+        <div class="invitation">
+            <p>日期：2024年11月14日（星期四）</p>
+            <p>时间：下午6:00 - 晚上10:00</p>
+            <p>地点：[具体地址]</p>
+            <p>着装要求：休闲装扮</p>
+        </div>
+
+        <div class="rsvp">
+            <h2>RSVP</h2>
+            <form>
+                <input type="text" id="name" placeholder="你的名字" required>
+                <input type="email" id="email" placeholder="你的邮箱" required>
+                <button type="submit">确认参加</button>
+            </form>
+        </div>
     </div>
     <script>
         function updateCountdown() {
-            const birthday = new Date(new Date().getFullYear(), 10, 14); // 11月14号（月份从0开始，所以10表示11月）
+            const partyDate = new Date(new Date().getFullYear(), 10, 14, 18, 0, 0); // 11月14号下午6点
             const now = new Date();
-            let diff = birthday - now;
+            let diff = partyDate - now;
 
             if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = '今天就是你的生日！🎉';
+                document.getElementById('countdown').innerHTML = '派对已经开始！🎉';
                 return;
             }
 
@@ -115,6 +162,15 @@
 
         // 每秒更新一次倒计时
         setInterval(updateCountdown, 1000);
+
+        // 处理 RSVP 表单提交
+        document.querySelector('.rsvp form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            alert(`感谢 ${name}，我们已收到你的确认参加信息！`);
+            // 这里可以添加更多的逻辑，例如发送邮件等
+        });
     </script>
 </body>
 </html>
