@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Liang Dingcheng's Birthday Countdown</title>
+    <title>梁定成的生日倒计时</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: #f0f8ff; /* Light blue sky background */
+            background: #f0f8ff; /* 蓝色天空背景 */
             color: #333;
             text-align: center;
             padding-top: 50px;
@@ -23,7 +23,7 @@
             max-width: 600px;
             width: 90%;
             margin: auto;
-            background: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
+            background: rgba(255, 255, 255, 0.8); /* 白色半透明背景 */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -47,7 +47,7 @@
         h1 {
             font-size: 2em;
             margin-bottom: 20px;
-            color: #e74c3c; /* Red title */
+            color: #e74c3c; /* 红色标题 */
         }
 
         p {
@@ -76,23 +76,23 @@
 </head>
 <body>
     <div class="container">
-        <h1>Dear Liang Dingcheng, your birthday is in:</h1>
+        <h1>亲爱的梁定成，距离您的生日还有：</h1>
         <div id="countdown" class="countdown">
-            <div><span id="days"></span> days</div>
-            <div><span id="hours"></span> hours</div>
-            <div><span id="minutes"></span> minutes</div>
-            <div><span id="seconds"></span> seconds</div>
+            <div><span id="days"></span>天</div>
+            <div><span id="hours"></span>小时</div>
+            <div><span id="minutes"></span>分钟</div>
+            <div><span id="seconds"></span>秒</div>
         </div>
-        <p>Let's look forward to this special day!</p>
+        <p>让我们一起期待这个特别的日子！</p>
     </div>
     <script>
         function updateCountdown() {
-            const birthday = new Date(new Date().getFullYear(), 10, 14); // November 14th (months are 0-indexed, so 10 represents November)
+            const birthday = new Date(new Date().getFullYear(), 10, 14); // 11月14号（月份从0开始，所以10表示11月）
             const now = new Date();
             let diff = birthday - now;
 
             if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = 'Today is your birthday! 🎉';
+                document.getElementById('countdown').innerHTML = '今天就是你的生日！🎉';
                 return;
             }
 
@@ -107,10 +107,10 @@
             document.getElementById('seconds').innerText = seconds;
         }
 
-        // Initialize the countdown
+        // 初始化倒计时
         updateCountdown();
 
-        // Update the countdown every second
+        // 每秒更新一次倒计时
         setInterval(updateCountdown, 1000);
     </script>
 </body>
