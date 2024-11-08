@@ -38,17 +38,19 @@
             align-items: center;
             margin: 20px 0;
             font-size: 2em;
+            color: #e74c3c; /* 红色数字 */
         }
 
         .countdown div {
-            border: 2px solid #ccc;
+            border: 2px solid #e74c3c;
             padding: 10px;
             border-radius: 5px;
             width: 80px;
+            background: rgba(255, 255, 255, 0.8);
         }
 
         h1 {
-            font-size: 2em;
+            font-size: 2.5em;
             margin-bottom: 20px;
             color: #e74c3c; /* 红色标题 */
         }
@@ -110,7 +112,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>亲爱的朋友们，欢迎参加我的生日派对！</h1>
+        <h1>梁定成的生日派对邀请</h1>
         <div id="countdown" class="countdown">
             <div><span id="days"></span>天</div>
             <div><span id="hours"></span>小时</div>
@@ -130,7 +132,6 @@
             <h2>RSVP</h2>
             <form>
                 <input type="text" id="name" placeholder="你的名字" required>
-                <input type="email" id="email" placeholder="你的邮箱" required>
                 <button type="submit">确认参加</button>
             </form>
         </div>
@@ -167,7 +168,6 @@
         document.querySelector('.rsvp form').addEventListener('submit', function(event) {
             event.preventDefault();
             const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
             alert(`感谢 ${name}，我们已收到你的确认参加信息！`);
             // 这里可以添加更多的逻辑，例如发送邮件等
         });
