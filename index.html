@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liang Dingcheng's Birthday Countdown</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f0f8ff; /* Light blue sky background */
+            color: #333;
+            text-align: center;
+            padding-top: 50px;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            font-size: 2em;
+        }
+
+        .countdown div {
+            border: 2px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            width: 80px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #e74c3c; /* Red title */
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .countdown {
+                font-size: 1.5em;
+            }
+
+            .countdown div {
+                width: 60px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            p {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dear Liang Dingcheng, your birthday is in:</h1>
+        <div id="countdown" class="countdown">
+            <div><span id="days"></span> days</div>
+            <div><span id="hours"></span> hours</div>
+            <div><span id="minutes"></span> minutes</div>
+            <div><span id="seconds"></span> seconds</div>
+        </div>
+        <p>Let's look forward to this special day!</p>
+    </div>
+    <script>
+        function updateCountdown() {
+            const birthday = new Date(new Date().getFullYear(), 10, 14); // November 14th (months are 0-indexed, so 10 represents November)
+            const now = new Date();
+            let diff = birthday - now;
+
+            if (diff <= 0) {
+                document.getElementById('countdown').innerHTML = 'Today is your birthday! 🎉';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        // Initialize the countdown
+        updateCountdown();
+
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
