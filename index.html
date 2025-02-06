@@ -2,175 +2,214 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>梁定成的生日派对邀请</title>
+    <title>给最特别的你❤️</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            color: #333;
-            text-align: center;
-            padding-top: 50px;
             margin: 0;
-            min-height: 100vh;
+            height: 100vh;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            font-family: 'Microsoft YaHei', sans-serif;
+            overflow: hidden;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-image: url('./image.jpg'); /* 替换为你的图片路径 */
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
         }
 
         .container {
-            max-width: 600px;
+            position: relative;
+            text-align: center;
+            padding-top: 20%;
+            max-width: 800px;
             width: 90%;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.8); /* 白色半透明背景 */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin: 20px 0;
-            font-size: 2em;
-            color: #e74c3c; /* 红色数字 */
-        }
-
-        .countdown div {
-            border: 2px solid #e74c3c;
-            padding: 10px;
-            border-radius: 5px;
-            width: 80px;
-            background: rgba(255, 255, 255, 0.8);
         }
 
         h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #e74c3c; /* 红色标题 */
+            color: #fff;
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
         }
 
-        p {
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
-
-        .invitation {
-            margin-top: 20px;
-            font-size: 1.2em;
-            line-height: 1.5;
-        }
-
-        .rsvp {
-            margin-top: 20px;
-        }
-
-        .rsvp input[type="text"] {
-            padding: 10px;
-            width: 100%;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .rsvp button {
-            padding: 10px 20px;
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            border-radius: 5px;
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff4081;
+            transform: rotate(45deg);
+            animation: heartbeat 1.2s infinite;
             cursor: pointer;
         }
 
-        .rsvp button:hover {
-            background-color: #c0392b;
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff4081;
+            border-radius: 50%;
         }
 
-        @media (max-width: 600px) {
-            .countdown {
-                font-size: 1.5em;
-            }
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
 
-            .countdown div {
-                width: 60px;
-            }
+        .heart::after {
+            left: -10px;
+            top: 0;
+        }
 
-            h1 {
-                font-size: 1.5em;
-            }
+        .message {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            transform: scale(0);
+            animation: appear 1s ease-out forwards;
+        }
 
-            p {
-                font-size: 1em;
-            }
+        @keyframes heartbeat {
+            0% { transform: rotate(45deg) scale(1); }
+            50% { transform: rotate(45deg) scale(1.2); }
+            100% { transform: rotate(45deg) scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes appear {
+            to { transform: scale(1); }
+        }
+
+        button {
+            background: #ff4081;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: transform 0.3s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* 添加花朵飘落效果 */
+        .petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: rgba(255, 255, 255, 0.7);
+            clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(100vh) rotate(360deg); }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: #ffffff;
+            border-radius: 50%;
+            opacity: 0;
+            animation: sparkleAnimation 2s infinite;
+        }
+
+        @keyframes sparkleAnimation {
+            0% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        img {
+            border-radius: 50%;
+            margin: 20px;
+            box-shadow: 0 0 10px rgba(255, 64, 129, 0.8);
         }
     </style>
 </head>
 <body>
+    <!-- 自动生成花瓣 -->
+    <script>
+        for(let i=0; i<50; i++){
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random()*100 + 'vw';
+            petal.style.animationDuration = Math.random()*3 + 2 + 's';
+            petal.style.animationDelay = Math.random()*5 + 's';
+            document.body.appendChild(petal);
+        }
+    </script>
+
     <div class="container">
-        <h1>梁定成的生日派对邀请</h1>
-        <div id="countdown" class="countdown">
-            <div><span id="days"></span>天</div>
-            <div><span id="hours"></span>小时</div>
-            <div><span id="minutes"></span>分钟</div>
-            <div><span id="seconds"></span>秒</div>
-        </div>
-        <p>让我们一起庆祝这个特别的日子！</p>
-
-        <div class="invitation">
-            <p>日期：2024年11月14日（星期四）</p>
-            <p>时间：下午6:00 - 晚上10:00</p>
-            <p>地点：[具体地址]</p>
-            <p>着装要求：休闲装扮</p>
+        <h1>💖亲爱的辞煜蒺皑💖</h1>
+        
+        <div class="message">
+            <p>从遇见你的那天起，</p>
+            <p>我的世界开始有了不一样的色彩。</p>
+            <p>你的笑容像春天的阳光，</p>
+            <p>温暖了我所有的时光。</p>
+            <p>愿意给我一个照顾你的机会吗？</p>
+            <p>我会用余生为你写最浪漫的故事...</p>
         </div>
 
-        <div class="rsvp">
-            <h2>RSVP</h2>
-            <form>
-                <input type="text" id="name" placeholder="你的名字" required>
-                <button type="submit">确认参加</button>
-            </form>
+        <button onclick="showResponse()">请给我你的答案</button>
+        
+        <div id="response" class="hidden">
+            <h2>❤️ 无论你的选择是什么，你都是我心中最特别的存在 ❤️</h2>
+            <!-- 可以在这里添加照片 -->
+            <img src="your-photo.jpg" alt="我们的照片" style="width: 200px;">
         </div>
     </div>
+
+    <!-- 点击出现小心心 -->
     <script>
-        function updateCountdown() {
-            const partyDate = new Date(new Date().getFullYear(), 10, 14, 18, 0, 0); // 11月14号下午6点
-            const now = new Date();
-            let diff = partyDate - now;
+        document.body.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = e.clientX - 10 + 'px';
+            heart.style.top = e.clientY - 10 + 'px';
+            document.body.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 1000);
 
-            if (diff <= 0) {
-                document.getElementById('countdown').innerHTML = '派对已经开始！🎉';
-                return;
+            // 添加闪烁星星效果
+            for (let i = 0; i < 10; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.style.left = e.clientX + Math.random() * 50 - 25 + 'px';
+                sparkle.style.top = e.clientY + Math.random() * 50 - 25 + 'px';
+                sparkle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 2000);
             }
-
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = hours;
-            document.getElementById('minutes').innerText = minutes;
-            document.getElementById('seconds').innerText = seconds;
-        }
-
-        // 初始化倒计时
-        updateCountdown();
-
-        // 每秒更新一次倒计时
-        setInterval(updateCountdown, 1000);
-
-        // 处理 RSVP 表单提交
-        document.querySelector('.rsvp form').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const name = document.getElementById('name').value;
-            alert(`感谢 ${name}，我们已收到你的确认参加信息！`);
-            // 这里可以添加更多的逻辑，例如发送邮件等
         });
+
+        function showResponse() {
+            document.getElementById('response').classList.remove('hidden');
+            // 添加背景音乐（需要准备音乐文件）
+            const audio = new Audio('love-music.mp3');
+            audio.play();
+        }
     </script>
 </body>
 </html>
+
+
+
