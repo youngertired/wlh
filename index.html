@@ -2,214 +2,260 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <title>给最特别的你❤️</title>
+    <title>辞煜蒺皑の恋爱日记</title>
     <style>
+        :root {
+            --pink: #ffb6c1;
+            --heart: #ff69b4;
+        }
+
         body {
             margin: 0;
             height: 100vh;
-            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-            font-family: 'Microsoft YaHei', sans-serif;
-            overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #fff0f5;
+            font-family: 'Comic Sans MS', cursive;
+            overflow-x: hidden;
         }
 
-        .container {
-            position: relative;
-            text-align: center;
-            padding-top: 20%;
+        /* 顶部爱心云 */
+        .cloud {
+            position: fixed;
+            top: -50px;
+            width: 100%;
+            height: 200px;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 100 100"><path d="M50 15Q30 35 20 50q-10 15 0 30 10-15 30-35 20 20 30 35 10-15 0-30Q70 35 50 15z" fill="%23ffb6c1"/></svg>');
+            background-size: 100px;
+            opacity: 0.3;
+            animation: floatCloud 20s linear infinite;
+        }
+
+        .couple-container {
             max-width: 800px;
-            width: 90%;
+            margin: 100px auto;
+            padding: 20px;
         }
 
-        h1 {
-            color: #fff;
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: float 3s ease-in-out infinite;
+        /* 对话气泡 */
+        .chat {
+            position: relative;
+            margin: 30px;
+            padding: 20px;
+            border-radius: 20px;
+            min-height: 100px;
+            transition: transform 0.3s;
         }
 
-        .heart {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff4081;
-            transform: rotate(45deg);
-            animation: heartbeat 1.2s infinite;
-            cursor: pointer;
+        .chat:hover {
+            transform: scale(1.05);
         }
 
-        .heart::before,
-        .heart::after {
+        .chat.left {
+            background: white;
+            margin-right: 100px;
+        }
+
+        .chat.right {
+            background: var(--pink);
+            margin-left: 100px;
+        }
+
+        .chat::after {
             content: '';
             position: absolute;
-            width: 20px;
-            height: 20px;
-            background: #ff4081;
-            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            bottom: -15px;
+            transform: rotate(45deg);
         }
 
-        .heart::before {
-            top: -10px;
-            left: 0;
+        .chat.left::after {
+            left: 20px;
+            background: white;
         }
 
-        .heart::after {
-            left: -10px;
-            top: 0;
+        .chat.right::after {
+            right: 20px;
+            background: var(--pink);
         }
 
-        .message {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: 20px auto;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
-            transform: scale(0);
-            animation: appear 1s ease-out forwards;
+        /* 恋爱时间轴 */
+        .timeline {
+            border-left: 3px dashed var(--heart);
+            margin: 50px 100px;
+            padding: 20px 0;
         }
 
-        @keyframes heartbeat {
-            0% { transform: rotate(45deg) scale(1); }
-            50% { transform: rotate(45deg) scale(1.2); }
-            100% { transform: rotate(45deg) scale(1); }
+        .moment {
+            position: relative;
+            margin: 40px 30px;
+            padding: 15px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        .moment::before {
+            content: '❤';
+            position: absolute;
+            left: -48px;
+            top: 5px;
+            font-size: 1.5em;
+            color: var(--heart);
         }
 
-        @keyframes appear {
-            to { transform: scale(1); }
+        /* 照片糖果贴纸 */
+        .polaroid {
+            background: white;
+            padding: 10px;
+            transform: rotate(3deg);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+            margin: 20px;
+            display: inline-block;
         }
 
-        button {
-            background: #ff4081;
+        .polaroid img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border: 3px solid var(--pink);
+        }
+
+        /* 互动按钮 */
+        .love-btn {
+            background: var(--heart);
             color: white;
+            padding: 15px 40px;
+            border-radius: 30px;
             border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
             font-size: 1.2em;
             cursor: pointer;
-            transition: transform 0.3s;
-            margin-top: 20px;
+            transition: all 0.3s;
         }
 
-        button:hover {
-            transform: scale(1.1);
+        .love-btn:hover {
+            transform: rotate(-5deg) scale(1.1);
+            box-shadow: 0 0 20px var(--heart);
         }
 
-        .hidden {
-            display: none;
+        /* 飘动小熊 */
+        .bear {
+            position: fixed;
+            width: 100px;
+            bottom: -50px;
+            animation: bearWalk 15s linear infinite;
         }
 
-        /* 添加花朵飘落效果 */
-        .petal {
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background: rgba(255, 255, 255, 0.7);
-            clip-path: polygon(50% 0%, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0% 50%, 40% 40%);
-            animation: fall linear infinite;
+        @keyframes bearWalk {
+            0% { left: -100px; transform: rotateY(0); }
+            50% { left: 50%; transform: rotateY(0); }
+            51% { transform: rotateY(180deg); }
+            100% { left: 100%; transform: rotateY(180deg); }
         }
 
-        @keyframes fall {
-            to { transform: translateY(100vh) rotate(360deg); }
-        }
-
-        .sparkle {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background: #ffffff;
-            border-radius: 50%;
-            opacity: 0;
-            animation: sparkleAnimation 2s infinite;
-        }
-
-        @keyframes sparkleAnimation {
-            0% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.5); }
-        }
-
-        img {
-            border-radius: 50%;
-            margin: 20px;
-            box-shadow: 0 0 10px rgba(255, 64, 129, 0.8);
+        @keyframes floatCloud {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(100%); }
         }
     </style>
 </head>
 <body>
-    <!-- 自动生成花瓣 -->
-    <script>
-        for(let i=0; i<50; i++){
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.style.left = Math.random()*100 + 'vw';
-            petal.style.animationDuration = Math.random()*3 + 2 + 's';
-            petal.style.animationDelay = Math.random()*5 + 's';
-            document.body.appendChild(petal);
-        }
-    </script>
+    <div class="cloud"></div>
 
-    <div class="container">
-        <h1>💖亲爱的辞煜蒺皑💖</h1>
-        
-        <div class="message">
-            <p>从遇见你的那天起，</p>
-            <p>我的世界开始有了不一样的色彩。</p>
-            <p>你的笑容像春天的阳光，</p>
-            <p>温暖了我所有的时光。</p>
-            <p>愿意给我一个照顾你的机会吗？</p>
-            <p>我会用余生为你写最浪漫的故事...</p>
+    <!-- 飘动小熊 -->
+    <img src="bear.gif" class="bear" alt="小熊">
+
+    <div class="couple-container">
+        <!-- 甜蜜对话 -->
+        <div class="chat left">
+            <h3>🍭 那天你说...</h3>
+            <p>"每次看到你，心跳都会漏拍"</p>
+            <p>其实我的小鹿已经撞晕啦！(>ω<)</p>
         </div>
 
-        <button onclick="showResponse()">请给我你的答案</button>
-        
-        <div id="response" class="hidden">
-            <h2>❤️ 无论你的选择是什么，你都是我心中最特别的存在 ❤️</h2>
-            <!-- 可以在这里添加照片 -->
-            <img src="your-photo.jpg" alt="我们的照片" style="width: 200px;">
+        <div class="chat right">
+            <h3>🌸 我的回应...</h3>
+            <p>悄悄把你设置成手机天气的城市</p>
+            <p>这样每天起床第一个看到的就是你☀️</p>
         </div>
+
+        <!-- 恋爱时间轴 -->
+        <div class="timeline">
+            <div class="moment">
+                <h4>🏷️ 2023.02.14</h4>
+                <p>第一次牵手的电影院台阶</p>
+                <div class="polaroid">
+                    <img src="movie-night.jpg" alt="我们的电影票">
+                </div>
+            </div>
+
+            <div class="moment">
+                <h4>🏷️ 2023.05.20</h4>
+                <p>你送我养的多肉现在长出新芽啦🌱</p>
+                <div class="polaroid">
+                    <img src="plant.jpg" alt="我们的植物">
+                </div>
+            </div>
+        </div>
+
+        <!-- 每日心动按钮 -->
+        <center>
+            <button class="love-btn" onclick="showLove()">
+                💖 点击查看今日心动瞬间
+            </button>
+            <div id="daily-love"></div>
+        </center>
     </div>
 
-    <!-- 点击出现小心心 -->
     <script>
-        document.body.addEventListener('click', function(e) {
-            const heart = document.createElement('div');
-            heart.className = 'heart';
-            heart.style.left = e.clientX - 10 + 'px';
-            heart.style.top = e.clientY - 10 + 'px';
-            document.body.appendChild(heart);
+        // 每日随机情话
+        const loveMessages = [
+            "今天你眨眼的频率比平时高了0.3次，是不是看到我心跳加速了？",
+            "系统提示：您预订的拥抱已到货，请及时签收",
+            "正在生成你的可爱指数... (计算结果超过最大值)",
+            "检测到空气中甜蜜浓度超标，来源：你的笑容",
+            "我们的默契值+1，现在可以解锁新互动啦！"
+        ];
+
+        function showLove() {
+            const randomMsg = loveMessages[Math.floor(Math.random()*loveMessages.length)];
+            const loveBox = document.getElementById('daily-love');
+            loveBox.innerHTML = `
+                <div style="margin:20px; padding:15px; background:white; border-radius:10px; 
+                    animation: popIn 0.5s">
+                    🎀 ${randomMsg}
+                </div>
+            `;
             
-            setTimeout(() => heart.remove(), 1000);
-
-            // 添加闪烁星星效果
-            for (let i = 0; i < 10; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.style.left = e.clientX + Math.random() * 50 - 25 + 'px';
-                sparkle.style.top = e.clientY + Math.random() * 50 - 25 + 'px';
-                sparkle.style.animationDelay = Math.random() * 2 + 's';
-                document.body.appendChild(sparkle);
-                
-                setTimeout(() => sparkle.remove(), 2000);
+            // 添加飘落爱心
+            for(let i=0; i<5; i++){
+                const heart = document.createElement('div');
+                heart.style.cssText = `
+                    position: absolute;
+                    left: ${Math.random()*100}%;
+                    top: -50px;
+                    font-size: 25px;
+                    animation: fallHeart ${Math.random()*2+1}s linear;
+                `;
+                heart.innerHTML = '💗';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 2000);
             }
-        });
-
-        function showResponse() {
-            document.getElementById('response').classList.remove('hidden');
-            // 添加背景音乐（需要准备音乐文件）
-            const audio = new Audio('love-music.mp3');
-            audio.play();
         }
+
+        // 自动生成背景爱心
+        setInterval(() => {
+            const heart = document.createElement('div');
+            heart.style.cssText = `
+                position: fixed;
+                left: ${Math.random()*100}%;
+                top: -50px;
+                font-size: 20px;
+                opacity: 0.3;
+                animation: floatHeart ${Math.random()*5+5}s linear;
+            `;
+            heart.innerHTML = Math.random()>0.5 ? '💖' : '💝';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }, 3000);
     </script>
 </body>
 </html>
-
-
-
